@@ -55,7 +55,7 @@ int main()
   ojs << true << endl;
   ojs << vector<double>{1.0, 2.0} << endl;
   ojs << map<string, int>{{"a", 1}, {"b", 2}} << endl;
-  ojs << Country{
+  ojs << Country {
     "中国",
       {
         {"黑龙江", {"哈尔滨", "大庆"}},
