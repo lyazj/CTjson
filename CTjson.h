@@ -21,7 +21,6 @@
 #include <iomanip>
 #include <stdexcept>
 #include <utility>
-#include <functional>
 
 namespace CTjson {
 
