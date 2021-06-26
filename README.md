@@ -9,13 +9,21 @@ Class `CTjson::ojsonstream`, derived from `std::ostream` protectedly, can conver
 These are basic rules:
 
 1. `nullptr` -> `null`
+
 2. `(std::string)"STL-string"` -> `"STL-string"`
+
    `(const char *)"Cstyle-string"` -> `"Cstyle-string"`
+
    `(const char *)NULL` -> `null`
+
 3. `(int)1` -> `1` (as well as any integer type)
+
 4. `(double)1.0` -> `1.000000` (as well as any float type)
+
 5. `(bool)true` -> `true` (as well as false)
+
 6. `std::vector<int>{1, 2, 3}` -> `[1, 2, 3]` (as well as any `CTjson::ojsonstream` object `ojs` and any object `t` with `ojs << *std::begin(t)` defined)
+
 7. 
        std::map<std::string, int>{{"a", 1}, {"b", 2}}
 
