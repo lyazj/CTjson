@@ -222,11 +222,4 @@ inline auto prt_obj(ojsonstream &ojs, Args &&...args)
   return ojs;
 }
 
-template<class T>
-inline auto operator<<(ojsonstream &ojs, const T &t)
-  -> decltype(t.print(ojs))
-{
-  return t.print(ojs);
-}
-
 }  // namespace CTjson

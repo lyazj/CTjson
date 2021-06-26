@@ -22,6 +22,13 @@
 using namespace CTjson;
 using namespace std;
 
+template<class T>
+inline auto operator<<(ojsonstream &ojs, const T &t)
+  -> decltype(t.print(ojs))
+{
+  return t.print(ojs);
+}
+
 #define KVP(var) #var, var
 
 struct Province {
