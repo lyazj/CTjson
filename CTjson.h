@@ -25,10 +25,6 @@
 namespace CTjson {
 
 class ojsonstream : protected std::ostream {
-  friend ojsonstream &endl(ojsonstream &ojs);
-
-  // more iomanips to be added...
-
 public:
   typedef size_t depth_type;
 
@@ -76,28 +72,28 @@ public:
 
 private:
   depth_type _depth;
-
-  ojsonstream &indent()
-  {
-    base() << std::string(_depth * 4, ' ');
-    return *this;
-  }
 };
 
 typedef ojsonstream &iomanip(ojsonstream &);
-
-inline ojsonstream &endl(ojsonstream &ojs)
-{
-  ojs.base() << std::endl;
-  return ojs.indent();
-}
-
-// more iomanips to be added...
 
 inline ojsonstream &operator<<(ojsonstream &ojs, const iomanip &iom)
 {
   return iom(ojs);
 }
+
+inline ojsonstream &indent(ojsonstream &ojs)
+{
+  ojs.base() << std::string(ojs.depth() * 4, ' ');
+  return ojs;
+}
+
+inline ojsonstream &endl(ojsonstream &ojs)
+{
+  ojs.base() << std::endl;
+  return ojs << indent;
+}
+
+// more iomanips to be added...
 
 inline ojsonstream &operator<<(ojsonstream &ojs, nullptr_t)
 {
@@ -221,11 +217,3 @@ inline auto operator<<(ojsonstream &ojs, const T &t)
 }
 
 }  // namespace CTjson
-
-namespace std {
-
-using CTjson::endl;
-
-// more iomanips to be added...
-
-}  // namespace std
