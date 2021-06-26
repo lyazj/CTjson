@@ -36,7 +36,7 @@ These are basic rules:
 
    (as well as any `CTjson::ojsonstream` object `ojs` and any object `t` with both `std::string(std::begin(t)->first)` and `ojs << std::begin(t)->second` defined)
 
-The last 2 rules are especially significant, depending on which a JSON string could be generated recursively. Note that C++ defines overloading function `std::begin` for most STL containers and built-in arrays, but without any pointer. So rule 6 works with built-in arrays but not with pointers, safely.
+The last 2 rules are especially significant, depending on which a JSON string could be generated recursively. Note that C++ defines overloading function `std::begin()` for most STL containers and built-in arrays, but without any pointer. So rule 6 works with built-in arrays but not with pointers, safely.
 
 These are C++ types work with rule 6 conventionally, with suitable type `T`:
 
