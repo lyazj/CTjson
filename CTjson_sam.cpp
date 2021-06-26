@@ -49,11 +49,12 @@ int main()
   ojsonstream ojs(cout.rdbuf());
   ojs << nullptr << endl;
   ojs << string("STL-string") << endl;
-  ojs << "C-string" << endl;
+  ojs << "Cstyle-string" << endl;
+  ojs << (const char *)NULL << endl;
   ojs << 1 << endl;
   ojs << 1.0 << endl;
   ojs << true << endl;
-  ojs << vector<double>{1.0, 2.0} << endl;
+  ojs << vector<int>{1, 2, 3} << endl;
   ojs << map<string, int>{{"a", 1}, {"b", 2}} << endl;
   ojs << Country {
     "中国",

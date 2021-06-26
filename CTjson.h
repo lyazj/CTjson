@@ -21,6 +21,7 @@
 #include <iomanip>
 #include <stdexcept>
 #include <utility>
+#include <functional>
 
 namespace CTjson {
 
@@ -29,7 +30,8 @@ public:
   typedef size_t depth_type;
 
   ojsonstream(std::basic_streambuf<char> *psb)
-    : std::ostream(psb), _depth(0)
+    : std::ostream(psb),
+    _depth(0), _ind_char(' '), _ind_cnt(4)
   {
     base() << std::boolalpha;
     base() << std::fixed << std::setprecision(6);
@@ -70,27 +72,38 @@ public:
     return *this;
   }
 
+  ojsonstream &setindent(char c, size_t cnt = (size_t)-1)
+  {
+    _ind_char = c;
+    _ind_cnt = cnt != (size_t)-1 ? cnt
+      : c == ' ' ? 4
+      : c == '\t' ? 1
+      : 0;
+    return *this;
+  }
+  ojsonstream &indent()
+  {
+    base() << std::string(_depth * _ind_cnt, _ind_char);
+    return *this;
+  }
+
 private:
-  depth_type _depth;
+  depth_type  _depth;
+  char        _ind_char;
+  size_t      _ind_cnt;
 };
 
 typedef ojsonstream &iomanip(ojsonstream &);
 
-inline ojsonstream &operator<<(ojsonstream &ojs, const iomanip &iom)
+inline ojsonstream &operator<<(ojsonstream &ojs, iomanip &iom)
 {
   return iom(ojs);
-}
-
-inline ojsonstream &indent(ojsonstream &ojs)
-{
-  ojs.base() << std::string(ojs.depth() * 4, ' ');
-  return ojs;
 }
 
 inline ojsonstream &endl(ojsonstream &ojs)
 {
   ojs.base() << std::endl;
-  return ojs << indent;
+  return ojs.indent();
 }
 
 // more iomanips to be added...
