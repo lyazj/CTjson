@@ -52,7 +52,7 @@ public:
 
   // for other methods, take base().eof() for example
 
-  depth_type depth()
+  depth_type depth() const
   {
     return _depth;
   }
