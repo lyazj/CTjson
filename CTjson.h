@@ -101,7 +101,7 @@ inline ojsonstream &operator<<(ojsonstream &ojs, iomanip &iom)
 
 inline ojsonstream &endl(ojsonstream &ojs)
 {
-  ojs.base() << std::endl;
+  ojs.base() << '\n';
   return ojs.indent();
 }
 
