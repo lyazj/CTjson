@@ -99,6 +99,7 @@ inline ojsonstream &operator<<(ojsonstream &ojs, iomanip &iom)
   return iom(ojs);
 }
 
+// for performance, no explicit flushing
 inline ojsonstream &endl(ojsonstream &ojs)
 {
   ojs.base() << '\n';
