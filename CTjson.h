@@ -114,9 +114,32 @@ inline ojsonstream &operator<<(ojsonstream &ojs, nullptr_t)
   return ojs;
 }
 
-inline ojsonstream &operator<<(ojsonstream &ojs, const std::string &str)
+ojsonstream &operator<<(ojsonstream &ojs, const std::string &str)
 {
-  ojs.base() << "\"" << str << "\"";
+  ojs.base() << "\"";
+  for(char c : str)
+  {
+    if(isprint(c))
+    {
+      if(c == '\'') ojs.base() << "\\\'";
+      else if(c == '\"') ojs.base() << "\\\"";
+      else if(c == '\\') ojs.base() << "\\\\";
+      else ojs.base() << (c);
+    }
+    else if(c == '\n') ojs.base() << "\\n";
+    else if(c == '\r') ojs.base() << "\\r";
+    else if(c == '\t') ojs.base() << "\\t";
+    else if(c == '\v') ojs.base() << "\\v";
+    else if(c == '\0') ojs.base() << "\\0";
+    else if(c == '\a') ojs.base() << "\\a";
+    else if(c == '\b') ojs.base() << "\\b";
+    else if(c == '\f') ojs.base() << "\\f";
+    else
+    {
+      ojs.base() << "\\x" << std::hex << (unsigned)c << std::dec;
+    }
+  }
+  ojs.base() << "\"";
   return ojs;
 }
 
@@ -125,8 +148,7 @@ inline ojsonstream &operator<<(ojsonstream &ojs, const char *str)
   if(!str)
     return ojs << nullptr;
 
-  ojs.base() << "\"" << str << "\"";
-  return ojs;
+  return ojs << std::string(str);
 }
 
 template<class T>
