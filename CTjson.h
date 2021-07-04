@@ -121,15 +121,15 @@ ojsonstream &operator<<(ojsonstream &ojs, const std::string &str)
   {
     if(isprint(c))
     {
-      if(c == '\'') ojs.base() << "\\\'";
-      else if(c == '\"') ojs.base() << "\\\"";
+      if(c == '\"') ojs.base() << "\\\"";
+      // else if(c == '\'') ojs.base() << "\\\'";
       else if(c == '\\') ojs.base() << "\\\\";
       else ojs.base() << (c);
     }
     else if(c == '\n') ojs.base() << "\\n";
     else if(c == '\r') ojs.base() << "\\r";
     else if(c == '\t') ojs.base() << "\\t";
-    else if(c == '\v') ojs.base() << "\\v";
+    // else if(c == '\v') ojs.base() << "\\v";
     // else if(c == '\0') ojs.base() << "\\0";
     // else if(c == '\a') ojs.base() << "\\a";
     else if(c == '\b') ojs.base() << "\\b";
