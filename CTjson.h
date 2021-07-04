@@ -130,8 +130,8 @@ ojsonstream &operator<<(ojsonstream &ojs, const std::string &str)
     else if(c == '\r') ojs.base() << "\\r";
     else if(c == '\t') ojs.base() << "\\t";
     else if(c == '\v') ojs.base() << "\\v";
-    else if(c == '\0') ojs.base() << "\\0";
-    else if(c == '\a') ojs.base() << "\\a";
+    // else if(c == '\0') ojs.base() << "\\0";
+    // else if(c == '\a') ojs.base() << "\\a";
     else if(c == '\b') ojs.base() << "\\b";
     else if(c == '\f') ojs.base() << "\\f";
     else
