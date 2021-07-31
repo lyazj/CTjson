@@ -18,7 +18,7 @@ These are basic rules:
 
 3. `(int)1` -> `1` (as well as any integer type)
 
-4. `(double)1.0` -> `1.000000` (as well as any float type)
+4. `(double)1.0` -> `1.000000e+00` (as well as any float type)
 
 5. `(bool)true` -> `true` (as well as false)
 
@@ -79,7 +79,7 @@ To get a `std::string` object containing JSON string, use `std::ostringstream`, 
 
 ### Get base reference for further manipulation
 
-By default, `std::boolalpha`, `std::fixed`, `std::setprecision(6)` is used during construction. Use `ojsonstream::base()` to get reference to a `ojsonstream` object's base(`std::ostream`) object for further manipulation.
+By default, `std::boolalpha`, `std::scientific` is used during construction. Use `ojsonstream::base()` to get reference to a `ojsonstream` object's base(`std::ostream`) object for further manipulation.
 
 ### Set indentation
 
