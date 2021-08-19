@@ -18,7 +18,7 @@
 
 namespace CTjson {
 
-static std::ostream &escape(ojsonstream &ojs, char c)
+inline std::ostream &escape(ojsonstream &ojs, char c)
 {
   if(c == '\"')
     return ojs.base() << "\\\"";
