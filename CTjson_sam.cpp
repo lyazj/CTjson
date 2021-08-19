@@ -58,6 +58,8 @@ int main()
   ojs << true << endl;
   ojs << vector<int>{1, 2, 3} << endl;
   ojs << map<string, int>{{"a", 1}, {"b", 2}} << endl;
+  ojs.setspace(false);
+  ojs.setbreakline(false);
   ojs << Country {
     "中国", {
       {"黑龙江", {"哈尔滨", "大庆"}},

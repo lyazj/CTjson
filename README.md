@@ -89,11 +89,12 @@ To get a `std::string` object containing JSON string, use `std::ostringstream`, 
 
 By default, `std::boolalpha`, `std::scientific` is used during construction. Use `ojsonstream::base()` to get reference to a `ojsonstream` object's base(`std::ostream`) object for further manipulation.
 
-### Set indentation
+### Set breakline and indentation
 
-By default, a `CTjson::endl` manipulation makes a break line and add 4 spaces of indentation. Use `ojsonstream::setindent()` to change this behavior. The function is declared as:
+By default, `CTjson::breakline()` makes a break line and adds 4 spaces of indentation. Use `ojsonstream::setbreakline()` and `ojsonstream::setindent()` to change this behavior. They are declared as:
 
-    setindent(char c, size_t cnt = (size_t)-1);
+    ojsonstream &setbreakline(bool b);
+    ojsonstream &setindent(char c, size_t cnt = (size_t)-1);
 
 If argument `cnt` is not provided or equals to `(size_t)-1`, the value is set as:
 
@@ -104,6 +105,16 @@ If argument `cnt` is not provided or equals to `(size_t)-1`, the value is set as
 To disable indentation for `CTjson::ojsonstream` object `ojs`, use:
 
     ojs.setindent(0);
+
+### Set space
+
+By default, `CTjson::space()` outputs a space. Use `ojsonstream::setspace()` to change this behavior. The function is declared as:
+
+    ojsonstream &setspace(bool b);
+
+To disable space output, use:
+
+    ojs.setspace(0);
 
 ### Convert your own C++ class
 
