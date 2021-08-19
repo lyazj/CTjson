@@ -10,15 +10,23 @@ These are basic rules:
 
 1. `nullptr` -> `null`
 
-2. `(std::string)"STL-string"` -> `"STL-string"`
+2. `(char)'C'` -> `"C"`
+
+   `(const char *)NULL` -> `null`
 
    `(const char *)"Cstyle-string"` -> `"Cstyle-string"`
 
-   `(const char *)NULL` -> `null`
+   `(std::string)"STL-string"` -> `"STL-string"`
 
 3. `(int)1` -> `1` (as well as any integer type)
 
 4. `(double)1.0` -> `1.000000e+00` (as well as any float type)
+
+   `(double)NAN` -> `null`
+
+   `(double)INFINITY` -> `null`
+
+   `(double)-INFINITY` -> `null`
 
 5. `(bool)true` -> `true` (as well as false)
 
