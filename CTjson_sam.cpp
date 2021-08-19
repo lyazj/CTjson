@@ -22,15 +22,6 @@
 using namespace CTjson;
 using namespace std;
 
-template<class T>
-inline auto operator<<(ojsonstream &ojs, const T &t)
-  -> decltype(t.print(ojs))
-{
-  return t.print(ojs);
-}
-
-#define KVP(var) #var, var
-
 struct Province {
   string name;
   vector<string> cities;
@@ -55,11 +46,15 @@ int main()
 {
   ojsonstream ojs(cout.rdbuf());
   ojs << nullptr << endl;
-  ojs << string("STL-string") << endl;
+  ojs << 'C' << endl;
   ojs << "Cstyle-string" << endl;
+  ojs << string("STL-string") << endl;
   ojs << (const char *)NULL << endl;
   ojs << 1 << endl;
   ojs << 1.0 << endl;
+  ojs << NAN << endl;
+  ojs << INFINITY << endl;
+  ojs << -INFINITY << endl;
   ojs << true << endl;
   ojs << vector<int>{1, 2, 3} << endl;
   ojs << map<string, int>{{"a", 1}, {"b", 2}} << endl;
